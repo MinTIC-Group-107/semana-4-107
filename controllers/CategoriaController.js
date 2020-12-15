@@ -1,6 +1,9 @@
+const categorias = require('../models/categoria.js')
 
 class CategoriaController {
     async list(req, res) {
+        
+
         res.status(200).send('List works')
     }
     async add(req, res) {

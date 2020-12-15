@@ -14,9 +14,22 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   Categoria.init({
-    nombre: DataTypes.STRING,
+    nombre: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
     descripcion: DataTypes.STRING,
-    estado: DataTypes.INTEGER
+    estado: {
+      type: DataTypes.INTEGER,
+      defaultValue: 1,
+        validate: {
+          isValid(value) {
+            if (value !== 0 && value !== 1) {
+              throw new Error('El estado debe ser 1 o 0')
+            }
+          }
+        }
+    }
   }, {
     sequelize,
     modelName: 'Categoria',

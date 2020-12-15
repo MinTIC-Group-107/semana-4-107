@@ -17,15 +17,7 @@ module.exports = {
       },
       estado: {
         allowNull: false,
-        type: Sequelize.INTEGER,
-        defaultValue: 1,
-        validate: {
-          isValid(value) {
-            if (value !== 0 && value !== 1) {
-              throw new Error('El estado debe ser 1 o 0')
-            }
-          }
-        }
+        type: Sequelize.INTEGER
       },
       createdAt: {
         allowNull: false,

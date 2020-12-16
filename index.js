@@ -3,6 +3,7 @@ const morgan = require('morgan');
 const cors = require('cors');
 const router = require('./routes');
 const path = require('path');
+require('dotenv').config()
 
 
 const bodyParser = require('body-parser');

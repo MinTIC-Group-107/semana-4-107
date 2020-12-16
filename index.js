@@ -21,6 +21,10 @@ app.use(express.static(path.join(__dirname, 'public')))
 
 app.use('/api', router);
 
+app.get('/', (req, res) => {
+  res.send('Conectado')
+})
+
 app.set('port', process.env.PORT || 3000);
 
 

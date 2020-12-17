@@ -4,6 +4,7 @@ const morgan = require('morgan');
 const cors = require('cors');
 const router = require('./routes');
 const path = require('path');
+require('dotenv').config()
 
 
 const bodyParser = require('body-parser');
@@ -20,6 +21,10 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')))
 
 app.use('/api', router);
+
+app.get('/', (req, res) => {
+  res.send('Conectado')
+})
 
 app.set('port', process.env.PORT || 3000);
 

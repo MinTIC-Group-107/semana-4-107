@@ -38,7 +38,7 @@ class CategoriaController {
                 res.status(404).send({
                     error: 'Categoría a actualizar no fue encontrada.'
                 })
-            }    
+            }
         } catch (err) {
             res.status(500).send({
                 error: 'Problemas para modificar la categoría',
@@ -61,7 +61,7 @@ class CategoriaController {
                 res.status(404).send({
                     error: 'Categoría a actualizar no fue encontrada.'
                 })
-            }    
+            }
         } catch (err) {
             res.status(500).send({
                 error: 'Problemas para modificar la categoría',
@@ -84,7 +84,7 @@ class CategoriaController {
                 res.status(404).send({
                     error: 'Categoría a actualizar no fue encontrada.'
                 })
-            }    
+            }
         } catch (err) {
             res.status(500).send({
                 error: 'Problemas para modificar la categoría',

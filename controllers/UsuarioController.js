@@ -1,4 +1,3 @@
-const config = require('../secret/config')
 const models = require('../models')
 const bcrypt = require('bcryptjs')
 const tokenServices = require('../services/token')

@@ -5,18 +5,19 @@ const auth = require('../../middlewares/auth');
 const router = routerx();
 
 // api/categoria/list
-router.get('/list', categoriaController.list);
+router.get('/list', auth.verifyUsuario, categoriaController.list); //Need middleware
+// router.get('/list', categoriaController.list);
 
-// api/categoria/list
+// api/categoria/add
 router.post('/add', auth.verifyUsuario, categoriaController.add)
 
 // api/categoria/update
-router.put('/update', categoriaController.update)
+router.put('/update', auth.verifyUsuario, categoriaController.update)
 
 // api/categoria/activate
-router.put('/activate', categoriaController.activate)
+router.put('/activate', auth.verifyUsuario, categoriaController.activate)
 
 // api/categoria/deactivate
-router.put('/deactivate', categoriaController.deactivate)
+router.put('/deactivate', auth.verifyUsuario, categoriaController.deactivate)
 
 module.exports = router;

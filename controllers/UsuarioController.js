@@ -20,6 +20,11 @@ exports.login = async (req, res, next) => {
       where: {email: req.body.email}
     })
     if (user) {
+      if (user.estado === 0) {
+        return res.status(404).send({
+          message: 'Tu cuenta se encuentra desactivada, por favor comunicate con el administrador.'
+        })
+      }
       const passwordIsValid = bcrypt.compareSync(req.body.password, user.password)
       if (passwordIsValid) {
         const token = await tokenServices.encode(user)
@@ -79,3 +84,73 @@ exports.register = async (req, res, next) => {
     next(error)
   }
 }
+  exports.update = async (req, res) => {
+    try {
+        const wasUpdated = await models.Usuario.update(req.body, {
+            where: {
+                id: req.body.id
+            }
+        })
+        if (wasUpdated[0] === 1) {
+            res.status(200).send({
+                Resultado: 'exitoso'
+            })
+        } else {
+            res.status(404).send({
+                error: 'Usuario a actualizar no fue encontrado.'
+            })
+        }
+    } catch (err) {
+        res.status(500).send({
+            error: 'Problemas para modificar el usuario',
+            mensaje: err
+        })
+    }
+}
+exports.activate = async(req, res) => {
+    try {
+        const wasUpdated = await models.Usuario.update({estado: 1}, {
+            where: {
+                id: req.body.id
+            }
+        })
+        if (wasUpdated[0] === 1) {
+            res.status(200).send({
+                Resultado: 'exitoso'
+            })
+        } else {
+            res.status(404).send({
+                error: 'Usuario a actualizar no fue encontrado.'
+            })
+        }
+    } catch (err) {
+        res.status(500).send({
+            error: 'Problemas para modificar el usuario',
+            mensaje: err
+        })
+    }
+}
+exports.deactivate = async (req, res) => {
+    try {
+        const wasUpdated = await models.Usuario.update({estado: 0}, {
+            where: {
+                id: req.body.id
+            }
+        })
+        if (wasUpdated[0] === 1) {
+            res.status(200).send({
+                Resultado: 'exitoso'
+            })
+        } else {
+            res.status(404).send({
+                error: 'Usuario a actualizar no fue encontrado.'
+            })
+        }
+    } catch (err) {
+        res.status(500).send({
+            error: 'Problemas para modificar el usuario',
+            mensaje: err
+        })
+    }
+  }
+

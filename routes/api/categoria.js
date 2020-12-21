@@ -1,23 +1,11 @@
-const routerx = require('express-promise-router');
-const categoriaController = require('../../controllers/CategoriaController');
-const auth = require('../../middlewares/auth');
+const router = require('express').Router()
+const categoriaController = require('../../controllers/CategoriaController')
+const middleware = require('../../middlewares/auth')
 
-const router = routerx();
+router.get('/list', middleware.verifyAdminAlm, categoriaController.list)
+router.post('/add', middleware.verifyAdminAlm, categoriaController.add)
+router.put('/update', middleware.verifyAdminAlm, categoriaController.update)
+router.put('/activate', middleware.verifyAdminAlm, categoriaController.activate)
+router.put('/deactivate', middleware.verifyAdminAlm, categoriaController.deactivate)
 
-// api/categoria/list
-router.get('/list', auth.verifyUsuario, categoriaController.list); //Need middleware
-// router.get('/list', categoriaController.list);
-
-// api/categoria/add
-router.post('/add', auth.verifyUsuario, categoriaController.add)
-
-// api/categoria/update
-router.put('/update', auth.verifyUsuario, categoriaController.update)
-
-// api/categoria/activate
-router.put('/activate', auth.verifyUsuario, categoriaController.activate)
-
-// api/categoria/deactivate
-router.put('/deactivate', auth.verifyUsuario, categoriaController.deactivate)
-
-module.exports = router;
+module.exports = router

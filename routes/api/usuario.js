@@ -6,14 +6,14 @@ const middleware = require('../../middlewares/auth')
 
 const router = routerx();
 
-// api/usuario
-router.get('/', middleware.verifyAdmin, usuarioController.list);
+// api/usuario/list
+router.get('/list', middleware.verifyAdmin, usuarioController.list);
 
 // api/usuario/login
 router.post('/login', usuarioController.login)
 
-// api/usuario/register
-router.post('/register', usuarioController.register)
+// api/usuario/add
+router.post('/add', usuarioController.register)
 
 // api/usuario/update
 router.put('/update', middleware.verifyAdmin, usuarioController.update)

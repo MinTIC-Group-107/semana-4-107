@@ -67,7 +67,7 @@ exports.register = async (req, res, next) => {
       const newUser = await models.Usuario.create(req.body)
       console.log('newUser: ', newUser)
       if (newUser.dataValues.email) {
-        return res.status(201).json({
+        return res.status(200).json({
           user: newUser,
           message: 'Registro Exitoso'
         })

@@ -1,0 +1,4 @@
+DOCUMENTACIÓN ENTREGADA: 
+- Casos de Uso
+- Historias de Ususario
+- especificación de requisitos
